@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="number-container">
+            <input class="input-display" type="text" maxlength="10">
+            <div>
+                <button class="calculator-btns">7</button>
+                <button class="calculator-btns">8</button>
+                <button class="calculator-btns">9</button>
+                <button class="calculator-btns operator">x</button>
+            </div>
+            <div>
+                <button class="calculator-btns">4</button>
+                <button class="calculator-btns">5</button>
+                <button class="calculator-btns">6</button>
+                <button class="calculator-btns operator" id="minus">-</button>
+            </div>
+            <div>
+                <button class="calculator-btns">1</button>
+                <button class="calculator-btns">2</button>
+                <button class="calculator-btns">3</button>
+                <button class="calculator-btns operator">÷</button>
+            </div>
+            <div>
+                <button class="calculator-btns">0</button>
+                <button class="calculator-btns" id="decimal">.</button>
+                <button class="calculator-btns" id="double-zero">00</button>
+                <button class="calculator-btns operator">+</button>
+            </div>
+            <div>
+                <button class="calculator-btns" data-value="=" id="equals">=</button>
+                <button class="clear-btn" data-value="=" id="clear">C</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
