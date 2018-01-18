@@ -1,5 +1,4 @@
-
-var data = {
+var model = {
     equationInputs: [],
     stringEquation: '',
 }
@@ -17,7 +16,7 @@ var view = {
             this.numberBtns[i].addEventListener('click', function (e) {
                 var clickedElem = e.target || e.srcElement;
                 var clickedElemHTML = clickedElem.innerHTML;
-                data.equationInputs.push(clickedElemHTML);
+                model.equationInputs.push(clickedElemHTML);
                 controller.displayInputLimit();
                 controller.checkForOperator(clickedElem, clickedElemHTML);
                 controller.removeClickedOperatorElem(clickedElemHTML);
@@ -38,29 +37,27 @@ var controller = {
     },
     //Looks for repeated operators and remove the repeats
     checkRepeatOperator: function () {
-        var input = data.equationInputs;
-        for (var i = 0; i < input.length; i++) {
-            if (input[i] === "+" && input[i + 1] === "+") {
-                input.splice(i + 1, 1)
-            } else if (input[i] === "-" && input[i + 1] === "-") {
-                input.splice(i + 1, 1)
-            } else if (input[i] === "*" && input[i + 1] === "*") {
-                input.splice(i + 1, 1)
+        var inputs = model.equationInputs;
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i] === "+" && inputs[i + 1] === "+" ||
+                inputs[i] === "-" && inputs[i + 1] === "-" ||
+                inputs[i] === "*" && inputs[i + 1] === "*") {
+                inputs.splice(i + 1, 1)
             }
         }
     },
     //Removes non operators from the input array and/or replaces them
     removeClickedOperatorElem: function (elem) {
         if (elem === "=") {
-            data.equationInputs.pop();
+            model.equationInputs.pop();
         }
         if (elem === "x") {
-            data.equationInputs.pop();
-            data.equationInputs.push("*");
+            model.equationInputs.pop();
+            model.equationInputs.push("*");
         }
         if (elem === "÷") {
-            data.equationInputs.pop();
-            data.equationInputs.push("/");
+            model.equationInputs.pop();
+            model.equationInputs.push("/");
         }
     },
     //Checks for operators and hides them from the display
@@ -72,26 +69,24 @@ var controller = {
         }
     },
     displayInputLimit: function () {
-        if(view.display.value.length > 3) {
+        if (view.display.value.length > 3) {
             var length = view.display.value;
             var maxString = length.substring(0, 3);
-           length = maxString;
+            length = maxString;
         }
     },
     //Changes the input array to string
     arrayToString: function () {
-        data.stringEquation = data.equationInputs.join("");
+        model.stringEquation = model.equationInputs.join("");
     },
     //Clears input value and the input array
     clearDisplay: function () {
-        data.equationInputs = [];
+        model.equationInputs = [];
         view.display.value = '';
-        console.log(view.display.value)
     },
     //Display answer from equation
     equalsBtn: function () {
-        view.display.value = eval(data.stringEquation);
-        console.log(view.display.value);
+        view.display.value = eval(model.stringEquation);
     }
 }
 controller.initCalculator();
